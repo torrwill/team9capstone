@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# Editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# LSN-specific outputs (large; per-user)
+results/checkpoints/
+results/predictions/
+
+# Local Drive/Kaggle paths (in case the user puts data here)
+*.npz
+/data/
