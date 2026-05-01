@@ -1,0 +1,8 @@
+Model,Dataset,Decoder,Word Acc (%),WER (%),CER (%),Sentence Acc (%),Source
+Xu et al. [29],GRID (paper subset),Cascaded Attn-CTC,89.6,10.4,,,paper Table 5
+Gergen et al. [31],GRID (paper subset),—,86.4,13.6,,,paper Table 5
+Margam et al. [30],GRID (paper subset),3D-2D-CNN BLSTM-HMM,91.4,8.6,,,paper Table 5
+LipSyncNet (paper reported),GRID (paper subset),beam=100,96.7,8.2,,,paper Table 5/6
+LipSyncNet (paper) (ours),"GRID (paper subset, 550 test)",beam=100,52.86,47.14,22.76,0.18,this run
+No temporal (identity) (ours),"GRID (paper subset, 550 test)",beam=100,0.1,99.9,64.07,0.0,this run
+Transformer encoder (per-stream) (ours),"GRID (paper subset, 550 test)",beam=100,31.12,68.88,34.48,0.0,this run
