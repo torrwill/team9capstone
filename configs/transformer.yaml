@@ -1,0 +1,35 @@
+experiment_name: run_transformer_v1
+
+model:
+  backend: transformer_perstream
+  vocab_size: 40
+  freeze_early_effnet: true
+  use_self_attn: false
+  backend_kwargs:
+    nhead: 4
+    num_layers: 2
+    d_model: 1024
+    dropout: 0.1
+  display_name: "Transformer encoder (per-stream)"
+  color: "#27AE60"
+
+training:
+  num_epochs: 100
+  learning_rate: 1.0e-4
+  batch_size: 2
+  accum_steps: 4
+  max_grad_norm: 5.0
+  use_amp: true
+  num_workers: 2
+  prefetch: 4
+
+data:
+  dataset: grid
+  speakers: [s1, s2, s3, s4, s5]
+  samples_per_speaker: 200
+  train_size: 450
+  seed: 42
+
+checkpointing:
+  hf_repo: null
+  hf_subfolder: null
