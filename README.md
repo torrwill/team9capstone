@@ -154,9 +154,3 @@ Backward-compat canary against existing checkpoints:
 $env:LSN_CKPT_DIR = "/path/to/checkpoint-dir"
 pytest tests/test_checkpoint_compat.py -v
 ```
-
----
-
-## License
-
-(Add your license of choice.)
