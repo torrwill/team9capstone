@@ -1,14 +1,5 @@
 # Future work
 
-Items deferred from the LSN_TRAINING_EVAL.ipynb refactor. See the source
-notebook's TODO markdown cells for full rationale.
-
-## Preprocessing port (highest leverage)
-
-`Copy of VSR_notebook_v1.ipynb` (and friends) currently produce the `.npz`
-clips this codebase consumes. Port them into a `lsn.preprocessing` package
-with a CLI: `python scripts/preprocess.py --input <mp4-dir> --output <npz-dir>`.
-
 ## Variable-T support for LRS2 (notebook TODO-PRE-4)
 
 The current code uses fixed `T=75` for both GRID and LRS2. Proper LRS2
