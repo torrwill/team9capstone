@@ -21,6 +21,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=7"]
+preprocessing = ["opencv-python>=4.8", "dlib>=19.24"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

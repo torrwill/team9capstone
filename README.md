@@ -34,6 +34,15 @@ cd <repo>
 pip install -e .[dev]
 ```
 
+For preprocessing only, also install:
+
+```bash
+pip install -e .[preprocessing]
+# then download the dlib landmark model:
+wget http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2
+bzip2 -dk shape_predictor_68_face_landmarks.dat.bz2
+```
+
 The `.npz` clips (see `docs/data-format.md` for format) are produced by the
 preprocessing notebook (currently out of scope; see `docs/future-work.md`).
 
@@ -92,6 +101,21 @@ os.environ['HF_TOKEN'] = UserSecretsClient().get_secret('HF_TOKEN')
 
 ## Usage
 
+### Preprocess GRID videos → .npz clips
+
+```bash
+python scripts/preprocess.py \
+    --video-dir /path/to/grid_videos \
+    --align-dir /path/to/grid_align \
+    --output-dir /path/to/grid_processed_new \
+    --landmark-path shape_predictor_68_face_landmarks.dat \
+    --speakers s1 s2 s3 s4 s5
+```
+
+Both `--video-dir` and `--align-dir` must contain one subdirectory per speaker
+(e.g. `s1/`, `s2/`, ...). Output `.npz` files are written under `--output-dir`
+in the same layout, which is then passed directly to `--data-dir` for training.
+
 ### Train one experiment
 
 ```bash
@@ -127,13 +151,14 @@ python scripts/report.py --predictions-dir results/predictions
 
 ## Project layout
 
-| Path                  | Purpose                                                         |
-|-----------------------|-----------------------------------------------------------------|
-| `src/lsn/models/`     | 3D-CNN, EfficientNet, temporal backends, top-level models       |
-| `src/lsn/data/`       | Datasets, splits, vocab, LRS2 normalize                          |
-| `src/lsn/training/`   | Loop, checkpoint (HF-gated), runner                              |
-| `src/lsn/evaluation/` | Decoders, metrics, inference, report                             |
-| `scripts/`            | `train.py`, `infer.py`, `report.py` — CLI entry points           |
+| Path                       | Purpose                                                         |
+|----------------------------|-----------------------------------------------------------------|
+| `src/lsn/preprocessing/`  | Mouth-ROI extraction, normalization, .npz writer                 |
+| `src/lsn/models/`          | 3D-CNN, EfficientNet, temporal backends, top-level models       |
+| `src/lsn/data/`            | Datasets, splits, vocab, LRS2 normalize                          |
+| `src/lsn/training/`        | Loop, checkpoint (HF-gated), runner                              |
+| `src/lsn/evaluation/`      | Decoders, metrics, inference, report                             |
+| `scripts/`                 | `preprocess.py`, `train.py`, `infer.py`, `report.py` — CLIs     |
 | `configs/`            | Three YAML experiments — the reproducibility artifact            |
 | `tests/`              | Smoke tests (model shapes, data contract, config roundtrip)      |
 | `results/`            | Canonical PNGs + CSVs (committed); checkpoints + predictions are gitignored |
