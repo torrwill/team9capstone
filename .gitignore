@@ -24,6 +24,9 @@ VSR_Preprocessing_Script_v1.ipynb
 # Dev utilities used during development
 tools/dump_cell.py
 
+# Claude-generated planning docs
+docs/
+
 # OS
 .DS_Store
 Thumbs.db
