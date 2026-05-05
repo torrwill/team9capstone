@@ -13,6 +13,17 @@ venv/
 # Claude Code tooling (not for public repos)
 .claude/
 
+# Draft / personal notebooks (not part of submission)
+(Ran)_model_LSN_DRAFT.ipynb
+Copy of VSR_notebook_v1.ipynb
+model_LSN_DRAFT.ipynb
+LSN Training.ipynb
+LipSyncNet_Model_effnet.ipynb
+VSR_Preprocessing_Script_v1.ipynb
+
+# Dev utilities used during development
+tools/dump_cell.py
+
 # OS
 .DS_Store
 Thumbs.db
